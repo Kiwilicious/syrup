@@ -21,7 +21,7 @@ export default class UploadSection extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:8080/api/profile/${localStorage.idTokenPayload}`)
+        axios.get(`/api/profile/${localStorage.idTokenPayload}`)
         .then(({data}) => {
           this.setState({latitude: data.latitude})
           this.setState({longitude: data.longitude})
