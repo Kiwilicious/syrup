@@ -47,6 +47,10 @@ export default class Messages extends React.Component {
             })
         }
       })
+
+    this.socket.emit('message-viewed', function(data) {
+      console.log(data);
+    })
   }
   handleOnChange(e){
     this.setState({

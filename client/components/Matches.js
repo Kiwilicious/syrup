@@ -1,11 +1,13 @@
 import React from 'react';
 import NavBar from './NavBar';
 import axios from 'axios';
-import MatchesResults from './MatchesResults'
+import MatchesResults from './MatchesResults';
+import io from 'socket.io-client';
 
 export default class Matches extends React.Component {
   constructor(props) {
     super(props);
+    this.testButtonOn = this.testButtonOn.bind(this);
     this.state = {
       authId: localStorage.idTokenPayload,
       matches: [],
@@ -29,8 +31,6 @@ export default class Matches extends React.Component {
       .catch(err => {
         console.log(err);
       })
-
-    //socket emit to set state of newMatches to false
   }
 
   testing() {
@@ -39,6 +39,13 @@ export default class Matches extends React.Component {
       console.log(response.data.location)
     })
     .catch(err => { if (err) {return console.error(err)} })
+  }
+
+  testButtonOn() {
+    let socket = this.state.socket;
+    socket.emit('new-match', function(data) {
+    console.log('message emitted');
+    })
   }
 
   render() {

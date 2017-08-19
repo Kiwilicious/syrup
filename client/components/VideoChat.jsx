@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar';
-import axios from 'axios';
+import io from 'socket.io-client';
+
 
 class VideoChat extends Component {
   constructor(props) {
@@ -17,6 +18,24 @@ class VideoChat extends Component {
   }
 
   componentDidMount() {
+    const socket = io();
+    socket.emit('videochat-viewed', function(data) {
+      console.log(data);
+    })
+  }
+
+  handleUsername(e) {
+    e.preventDefault();
+    this.setState({username: e.target.value})
+  }
+
+  handleNumber(e) {
+    e.preventDefault();
+    this.setState({number: e.target.value})
+  }
+
+  login(form) {
+    form.preventDefault();
     var video_out = document.getElementById("vid-box");
     var phone = window.phone = PHONE({
 	    number        : this.state.user,
