@@ -44,13 +44,13 @@ class NavBar extends Component {
           </div>
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav navbar-right">
-              {this.state.newMatches ?
+              {/* {this.state.newMatches ?
               <li className="new-matches" ><img src="http://flyosity.com/images/_blogentries/networkicon/step1.png" height="15" width="15"/></li> 
-              : null}
+              : null} */}
               <li><Link to='/matches'>Matches</Link></li>
-              {this.state.newMessages ?
+              {/* {this.state.newMessages ?
               <li className="new-messages"><img src="http://flyosity.com/images/_blogentries/networkicon/step1.png" height="15" width="15"/></li>
-              : null}
+              : null} */}
               <li><Link to='/messages'>Messages</Link></li>
               <li><img src="http://flyosity.com/images/_blogentries/networkicon/step1.png" height="15" width="15"/></li>
               <li><Link to='/upload'>Upload</Link></li>
