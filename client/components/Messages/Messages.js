@@ -28,7 +28,7 @@ export default class Messages extends React.Component {
           messages: [...this.state.messages, data],
         })
     })
-      axios.get(`http://localhost:8080/api/matches/${localStorage.idTokenPayload}`)
+      axios.get(`/api/matches/${localStorage.idTokenPayload}`)
       .then(({data}) => {
         for (let i = 0; i < data.length; i++) {
           this.setState({
@@ -38,7 +38,7 @@ export default class Messages extends React.Component {
       })
       .then(() => {
         for (let j = 0; j < this.state.matcheeIds.length; j++) {
-          axios.get(`http://localhost:8080/api/profile/${this.state.matcheeIds[j]}`)
+          axios.get(`/api/profile/${this.state.matcheeIds[j]}`)
             .then(({data}) => {
               
               this.setState({
@@ -57,14 +57,14 @@ export default class Messages extends React.Component {
   handleOnSend(e){
     e.preventDefault();
     this.socket.emit('send message', this.state.text)
-    axios.get(`http://localhost:8080/api/users/${this.state.firstname}`)
+    axios.get(`/api/users/${this.state.firstname}`)
     .then(data => {
       this.setState({
         userId: Number(data.data[0].id)
       })
     })
     .then(() => {
-      axios.post(`http://localhost:8080/api/message/${localStorage.idTokenPayload}/${this.state.userId}`, {
+      axios.post(`/api/message/${localStorage.idTokenPayload}/${this.state.userId}`, {
         text: this.state.text
       })
     })
@@ -82,10 +82,10 @@ export default class Messages extends React.Component {
       firstname: name,
       messages:[]
     }, () => {
-      axios.get(`http://localhost:8080/api/users/${name}`)
+      axios.get(`/api/users/${name}`)
       .then(({data}) => {
         let id = Number(data[0].id)
-        axios.get(`http://localhost:8080/api/message/${localStorage.idTokenPayload}/${id}`)
+        axios.get(`/api/message/${localStorage.idTokenPayload}/${id}`)
         .then(({data}) => {
           for (let i = 0; i < data.length; i++) {         
           this.setState({

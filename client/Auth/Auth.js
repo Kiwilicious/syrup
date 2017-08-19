@@ -26,7 +26,7 @@ export default class Auth {
   handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        axios.get('https://stephaniefu.auth0.com/userinfo', {
+        axios.get('https://taeminpak.auth0.com/userinfo', {
           headers: {'Authorization': `Bearer ${authResult.accessToken}`}
         })
       .then(({ data }) => {
